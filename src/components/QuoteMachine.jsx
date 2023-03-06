@@ -1,39 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Quote from './Quote';
 import './QuoteMachine.css';
 
+const quotes = [
+  {
+    author: 'Nelson Mandela',
+    year: '1994',
+    text: 'It always seems impossible until it is done.'
+  },
+  {
+    author: 'Maya Angelou',
+    year: '1969',
+    text: "I've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel."
+  },
+  {
+    author: 'Steve Jobs',
+    year: '2005',
+    text: 'Innovation distinguishes between a leader and a follower.'
+  },
+  // add more quotes here
+];
+
 function QuoteMachine() {
-  const [quote, setQuote] = useState(null);
+  const [quoteIndex, setQuoteIndex] = useState(0);
   const [backgroundColor, setBackgroundColor] = useState(getRandomColor());
-  const [category, setCategory] = useState('inspirational');
-
-  useEffect(() => {
-    fetchQuote();
-  }, [category]);
-
-  function fetchQuote() {
-    fetch(`https://api.quotable.io/quotes?tags=${category}`)
-      .then(response => response.json())
-      .then(data => {
-        const randomIndex = Math.floor(Math.random() * data.results.length);
-        const quoteData = data.results[randomIndex];
-        setQuote({
-          text: quoteData.content,
-          author: quoteData.author,
-          year: quoteData.year
-        });
-      })
-      .catch(error => console.error(error));
-  }
 
   function handleNewQuoteClick() {
-    setQuote(null);
+    setQuoteIndex(Math.floor(Math.random() * quotes.length));
     setBackgroundColor(getRandomColor());
-    fetchQuote();
-  }
-
-  function handleCategoryClick(category) {
-    setCategory(category);
   }
 
   function getRandomColor() {
@@ -45,23 +39,19 @@ function QuoteMachine() {
     return { backgroundColor, textColor };
   }
 
-  return (
-    <div className="container-fluid" style={{ backgroundColor: backgroundColor.backgroundColor, color: backgroundColor.textColor }}>
+  const quote = quotes[quoteIndex];
+
+  return ( 
+    <div className="container-fluid" style={{backgroundColor: backgroundColor.backgroundColor, color: backgroundColor.textColor }}>
       <div className="row justify-content-center">
-        <div className="col-md-6 col-sm-8">
-          <div className="card text-center mt-5">
+        <div className="col-md-6 col-sm-6">
+          <div className="card text-center mt-5 mb-5">
             <div className="card-header bg-transparent">
-              <h1 className="display-4">Random Quote Machine</h1>
+              <h1 className="display-3">Random Quote Machine</h1>
             </div>
             <div className="card-body">
-              {quote ? <Quote quote={quote} /> : <p>Loading...</p>}
+              <Quote quote={quote} />
               <button className="btn btn-primary btn-lg mt-3" onClick={handleNewQuoteClick}>New Quote</button>
-              <div className="mt-3">
-                <button className="btn btn-outline-secondary mr-3" onClick={() => handleCategoryClick('inspirational')}>Inspirational</button>
-                <button className="btn btn-outline-secondary mr-3" onClick={() => handleCategoryClick('life')}>Life</button>
-                <button className="btn btn-outline-secondary mr-3" onClick={() => handleCategoryClick('love')}>Love</button>
-                <button className="btn btn-outline-secondary" onClick={() => handleCategoryClick('funny')}>Funny</button>
-              </div>
             </div>
           </div>
         </div>
