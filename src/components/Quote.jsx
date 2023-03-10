@@ -3,8 +3,11 @@ import React from 'react';
 function Quote({ quote }) {
   return (
     <div className="quote">
-      <blockquote className="blockquote">{quote.text}</blockquote>
-      <footer className="blockquote-footer">{quote.author} <cite title="Year">{quote.year}</cite></footer>
+      <blockquote className='tag'>Tag: {quote.type} </blockquote>
+      <blockquote className="blockquote">{quote.quote}</blockquote>
+      <footer className="blockquote-footer">Author: {quote.author}
+        <div> Year: {quote.year}</div>
+      </footer>        
     </div>
   );
 }
