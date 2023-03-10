@@ -7,6 +7,8 @@ function QuoteMachine() {
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [backgroundColor, setBackgroundColor] = useState(getRandomColor());
   
+
+
   function handleNewQuoteClick() {
     setQuoteIndex(Math.floor(Math.random() * quotes.length));
     setBackgroundColor(getRandomColor());
@@ -21,6 +23,7 @@ function QuoteMachine() {
     const textColor = `hsl(${hue}, ${saturation}%, ${lightness < 20 ? lightness + 30 : lightness - 10}%)`;
     return { backgroundColor, textColor};
   }
+
 
   const quote = quotes[quoteIndex];
 
