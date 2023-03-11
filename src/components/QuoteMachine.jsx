@@ -30,14 +30,14 @@ function QuoteMachine() {
   return ( 
     <div className="container-fluid" style={{backgroundColor: backgroundColor.backgroundColor, color: backgroundColor.textColor }}>
       <div className="row justify-content-center">
-        <div className="col-md-6 col-sm-6">
+        <div className="col-md-6 col-sm-5">
           <div className="card text-center mt-5 mb-5">
             <div className="card-header bg-transparent">
-              <h1 className="display-4">Random Quote Machine</h1>
+              <h1 className="display-3">Random Quote Machine</h1>
             </div>
             <div className="card-body">
               <Quote quote={quote} />
-              <button className="btn btn-primary btn-lg mt-3" onClick={handleNewQuoteClick}>New Quote</button>
+              <button className="btn btn-primary btn-lg mt-5" onClick={handleNewQuoteClick}>New Quote</button>
             </div>
           </div>
         </div>
