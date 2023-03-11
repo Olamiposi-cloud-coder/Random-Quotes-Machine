@@ -6,11 +6,16 @@
     margin: 0;
 }
 body {
-    height: 80vh;
+    height: 50vh;
     align-items: center;
     justify-content: center;
     width: 100%;
     overflow: hidden;
+}
+
+.container-fluid {
+    margin-bottom: 50px;
+    padding: 30px auto;
 }
 
 .quote-machine {
@@ -28,7 +33,7 @@ body {
 }
 .card {
     width: 100%;
-    /* height: 80%; */
+    height: 100%;
     background-color: #fff;
     padding: 2rem;
     border-radius: 0.5rem;
@@ -67,9 +72,9 @@ body {
 }
 
 .shadow {
-    box-shadow: 0px 4px 10px rgba(63, 248, 6, 0.2);
+    box-shadow: 0px 4px 10px rgba(133, 14, 14, 0.2);
 }
 .card-body {
-    height: 50vh;
+    height: 60vh;
     overflow: hidden;
 }
